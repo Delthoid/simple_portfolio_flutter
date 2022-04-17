@@ -1,0 +1,35 @@
+name: delthon_portfolio
+description: A new Flutter project.
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.15.0-178.1.beta <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  responsive_framework: ^0.1.7
+  google_fonts: ^2.3.1
+  flutter_staggered_grid_view: ^0.6.1
+  provider: ^6.0.2
+  animations: ^2.0.2
+  eva_icons_flutter: ^3.1.0
+  flutter_staggered_animations: "^1.0.0"
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^1.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/pogi.jpg
+    - assets/sc1.png
+    - assets/sc2.png
