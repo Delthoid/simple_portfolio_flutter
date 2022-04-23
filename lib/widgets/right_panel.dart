@@ -15,21 +15,24 @@ class _RightPanelState extends State<RightPanel> {
   @override
   Widget build(BuildContext context) {
     //Wdigets
-    Widget pogi = PogiImage();
-    Widget projects = Projects();
+    Widget pogi = const PogiImage();
+    Widget projects = const Projects();
 
     return Consumer<MainProvider>(
       builder: (context, state, child) {
         return AnimatedSwitcher(
-          duration: Duration(milliseconds: 100),
+          duration: const Duration(milliseconds: 300),
           child: state.selectedNavId == 2 ? pogi : projects,
           transitionBuilder: (child, Animation<double> animation) =>
-              ScaleTransition(
+              FadeTransition(
             child: child,
-            scale: animation,
-            alignment: Alignment.bottomCenter,
+            opacity: animation,
+            // scale: animation,
+            // alignment: Alignment.bottomCenter,
           ),
         );
+
+        //AnimatedSwitcher.defaultTransitionBuilder(child, animation)
       },
     );
   }

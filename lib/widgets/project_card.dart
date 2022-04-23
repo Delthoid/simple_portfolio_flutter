@@ -1,16 +1,19 @@
 import 'package:animations/animations.dart';
-import 'package:delthon_portfolio/models/project_model.dart';
+import 'package:delthon_portfolio/models/project.dart';
+import 'package:delthon_portfolio/provider/projects_data.dart';
 import 'package:delthon_portfolio/theme/colors.dart';
 import 'package:delthon_portfolio/theme/theme_index.dart';
 import 'package:delthon_portfolio/widgets/widget_index.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_network/image_network.dart';
+import 'package:provider/provider.dart';
 
 class ProjectCard extends StatefulWidget {
   const ProjectCard({Key? key, required this.project}) : super(key: key);
 
-  final ProjectModel project;
+  final Project project;
 
   @override
   State<ProjectCard> createState() => _ProjectCardState();
@@ -19,11 +22,11 @@ class ProjectCard extends StatefulWidget {
 class _ProjectCardState extends State<ProjectCard> {
   bool isSelected = false;
 
-  final previewWidth = 150;
+  final previewWidth = 150.0;
   final startPadding = 23.0;
   final dura = const Duration(milliseconds: 500);
   final curve = Curves.easeInOutQuart;
-  final previewImageHeight = 250.0;
+  var previewImageHeight = 250.0;
 
   bool showDetails = false;
 
@@ -158,9 +161,10 @@ class _ProjectCardState extends State<ProjectCard> {
         borderRadius: BorderRadius.circular(10),
         //color: color,
       ),
-      child: Image.asset(
+      child: Image.network(
         image,
         fit: BoxFit.fitWidth,
+        height: previewImageHeight,
         alignment: Alignment.topCenter,
       ),
     );
@@ -177,7 +181,7 @@ class _ProjectCardState extends State<ProjectCard> {
     );
   }
 
-  Widget buildProjectDescription(ProjectModel project) {
+  Widget buildProjectDescription(Project project) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -188,7 +192,7 @@ class _ProjectCardState extends State<ProjectCard> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(project.description),
+        SelectableText(project.description),
         SizedBox(
           height: 13,
         ),
@@ -199,7 +203,11 @@ class _ProjectCardState extends State<ProjectCard> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text('Flutter'),
+        Wrap(
+          children: [
+            ...widget.project.tags.map((e) => Text('$e ')),
+          ],
+        ),
       ],
     );
   }
@@ -335,9 +343,14 @@ class _ProjectCardState extends State<ProjectCard> {
                             ),
                             Wrap(
                               spacing: 10,
-                              children: const [
+                              children: [
                                 CustomButton(
                                   label: 'Download',
+                                  onPressed: () {
+                                    // context
+                                    //     .read<ProjectsProvider>()
+                                    //     .initializeJson();
+                                  },
                                 ),
                                 CustomButton(
                                   label: 'Source code',
@@ -359,7 +372,8 @@ class _ProjectCardState extends State<ProjectCard> {
                   : constraints.maxWidth - 280,
               top: isSelected ? 85 : 43,
               curve: curve,
-              child: previewContainer(Colors.yellow, 'assets/sc1.png'),
+              child: previewContainer(
+                  Colors.yellow, widget.project.previewLinks.last),
               duration: dura,
             ),
             AnimatedPositionedDirectional(
@@ -368,14 +382,16 @@ class _ProjectCardState extends State<ProjectCard> {
                   : constraints.maxWidth - 230,
               top: isSelected ? 85 : 30,
               curve: curve,
-              child: previewContainer(Colors.blue, 'assets/sc2.png'),
+              child:
+                  previewContainer(Colors.blue, widget.project.previewLinks[1]),
               duration: dura,
             ),
             AnimatedPositionedDirectional(
               start: isSelected ? startPadding : constraints.maxWidth - 180,
               top: isSelected ? 85 : 0,
               curve: curve,
-              child: previewContainer(Colors.red, 'assets/sc1.png'),
+              child: previewContainer(
+                  Colors.red, widget.project.previewLinks.first),
               duration: dura,
             ),
             // AnimatedContainer(

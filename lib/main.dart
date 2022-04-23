@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:delthon_portfolio/provider/main_provider.dart';
+import 'package:delthon_portfolio/provider/projects_data.dart';
 import 'package:delthon_portfolio/screens/home_screen.dart';
 import 'package:delthon_portfolio/theme/colors.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => MainProvider()),
+        ChangeNotifierProvider(create: (_) => ProjectsProvider()),
       ],
       child: const MyApp(),
     ),

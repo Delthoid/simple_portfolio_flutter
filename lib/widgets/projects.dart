@@ -1,7 +1,9 @@
-import 'package:delthon_portfolio/models/project_model.dart';
+import 'package:delthon_portfolio/models/project.dart';
+import 'package:delthon_portfolio/provider/projects_data.dart';
 import 'package:delthon_portfolio/widgets/project_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:provider/provider.dart';
 
 import '../theme/theme_index.dart';
 
@@ -13,51 +15,11 @@ class Projects extends StatefulWidget {
 }
 
 class _ProjectsState extends State<Projects> {
-  final projects = <ProjectModel>[
-    ProjectModel(
-      name: 'Flutter Weather ⛅',
-      description:
-          'A simple weather app made with flutter and integrated with weatherbit.io API\nDesigned by: \nDesign link:',
-      datePublished: DateTime.now(),
-      downloadLink: '',
-      repoLink: '',
-    ),
-    ProjectModel(
-      name: 'Flutter Weather ⛅',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      datePublished: DateTime.now(),
-      downloadLink: '',
-      repoLink: '',
-    ),
-    ProjectModel(
-      name: 'Flutter Weather ⛅',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' +
-          '\nLorem ipsum dolor sit amet, consectetur adipiscing elit.' +
-          '\nLorem ipsum dolor sit amet, consectetur adipiscing elit.' +
-          '\nLorem ipsum dolor sit amet, consectetur adipiscing elit.' +
-          '\nLorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      datePublished: DateTime.now(),
-      downloadLink: '',
-      repoLink: '',
-    ),
-    ProjectModel(
-      name: 'Flutter Weather ⛅',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      datePublished: DateTime.now(),
-      downloadLink: '',
-      repoLink: '',
-    ),
-    ProjectModel(
-      name: 'Flutter Weather ⛅',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      datePublished: DateTime.now(),
-      downloadLink: '',
-      repoLink: '',
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final projectsData = Provider.of<ProjectsProvider>(context);
+    final projects = projectsData.projects;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,20 +63,5 @@ class _ProjectsState extends State<Projects> {
         ),
       ],
     );
-    // return Container(
-    //   child: SingleChildScrollView(
-    //     child: ListView.builder(
-    //       shrinkWrap: true,
-    //       itemCount: projects.length,
-    //       itemBuilder: (context, index) {
-    //         var project = projects[index];
-    // return Padding(
-    //   padding: EdgeInsets.only(bottom: 16.0),
-    //   child: ProjectCard(project: project),
-    // );
-    //       },
-    //     ),
-    //   ),
-    // );
   }
 }

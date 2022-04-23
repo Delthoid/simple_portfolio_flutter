@@ -20,6 +20,7 @@ dependencies:
   animations: ^2.0.2
   eva_icons_flutter: ^3.1.0
   flutter_staggered_animations: "^1.0.0"
+  image_network: ^2.5.0
 
 dev_dependencies:
   flutter_test:
@@ -33,3 +34,4 @@ flutter:
     - assets/pogi.jpg
     - assets/sc1.png
     - assets/sc2.png
+    - assets/jsons/projects.json

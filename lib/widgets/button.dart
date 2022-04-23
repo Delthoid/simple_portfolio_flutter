@@ -6,16 +6,20 @@ class CustomButton extends StatelessWidget {
     Key? key,
     required this.label,
     this.color = accent,
+    this.onPressed,
   }) : super(key: key);
 
   final String label;
   final Color? color;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        onPressed!();
+      },
       child: Text(label),
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(color ?? theme.primaryColor),

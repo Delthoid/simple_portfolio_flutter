@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   // Text(
                   //   state.title,
                   //   style: title,
@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   // const SizedBox(
                   //   height: smallSpacing,
                   // ),
-                  const BuildCardNavigation(),
+                  BuildCardNavigation(),
                 ],
               ),
               const Spacer(),
